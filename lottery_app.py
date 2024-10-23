@@ -14,7 +14,7 @@ def combinations(n, k):
     return numerator / denominator
 
 # Load the CSV file
-file_path = "d:\\OneDrive\\Desktop\\649.csv"
+file_path = "649.csv"
 lottery_canada = pd.read_csv(file_path)
 
 def extract_numbers(row):
