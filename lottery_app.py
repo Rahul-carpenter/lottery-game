@@ -34,16 +34,20 @@ def one_ticket_probability(user_numbers):
 In other words, you have a 1 in {:,} chances to win.'''.format(user_numbers, percentage_form, int(n_combinations))
 
 def check_historical_occurrence(user_numbers, historical_numbers):
-    user_numbers_set = set(user_numbers)
-    check_occurrence = historical_numbers == user_numbers_set
-    n_occurrences = check_occurrence.sum()
+    user_numbers_set = set(user_numbers)  # Ensure the user numbers are in a set format
+    n_occurrences = 0
+
+    for winning_set in historical_numbers:  # Loop through each set of winning numbers
+        if user_numbers_set == winning_set:  # Compare set directly
+            n_occurrences += 1
 
     if n_occurrences == 0:
         return '''The combination {} has never occurred.
-This doesn't mean it's more likely to occur now. Your chances to win the big prize in the next drawing using the combination {} are 0.0000072% (1 in 13,983,816).'''.format(user_numbers, user_numbers)
+Your chances to win the big prize with this combination are 0.0000072% (1 in 13,983,816).'''.format(user_numbers)
     else:
         return '''The combination {} has occurred {} times in the past.
-Your chances to win the big prize in the next drawing using the combination {} remain the same: 0.0000072% (1 in 13,983,816).'''.format(user_numbers, n_occurrences, user_numbers)
+Your chances to win the big prize remain the same: 0.0000072% (1 in 13,983,816).'''.format(user_numbers, n_occurrences)
+
 
 def multi_ticket_probability(n_tickets):
     n_combinations = combinations(49, 6)
